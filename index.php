@@ -5,6 +5,11 @@
     <title>Demo</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>
+        <?php 
+        $greeting = "Hello";
+        echo $greeting." "."Everybody!";
+        ?>
+    </h1>
 </body>
 </html>
