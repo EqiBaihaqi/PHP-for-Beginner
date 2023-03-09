@@ -1,5 +1,5 @@
 # PHP Basic
-## Episode 3
+## Episode 3 - Your First PHP Tag
 Tag PHP digunakan untuk menandai kode PHP pada halaman web. Tag PHP dimulai dengan <?php dan diakhiri dengan ?>. Semua kode PHP harus ditempatkan di antara tag PHP. Contoh :
 ```
 <?php
@@ -10,7 +10,7 @@ Fungsi echo digunakan untuk menampilkan teks atau variabel pada halaman web. Fun
 ```
  echo 'Hello World';
 ```
-## Episode 4
+## Episode 4 - Variables
 variable dapat membuat proses mengkoding menjadi lebih simple dan efisien
 penulian variable dapat seperti "$variable1"."Everybody"; atau langusng dengan "$variable1 EveryBody"
 contoh :
@@ -32,7 +32,7 @@ echo $greeting . " " . "Everybody!";
 echo "$greeting Everybody!";
 ```
 
-## Episode 5
+## Episode 5 - Conditionals and Booleans
 Pada video episode 5, menjelaskan mengenai boolean dan kondisi, dimana boolean memiliki nilai 'true' atau 'false' yang bisa dimasukkan ke dalam sebuah kondisi.
 contoh :
 ```
@@ -64,7 +64,7 @@ Jika memasukkan nilai false pada variable $read maka akan memunculkan output :
 ![image](https://user-images.githubusercontent.com/95467302/223888986-13c23132-3882-402c-8a51-a87cb90d3169.png)
 
 
-## Episode 6
+## Episode 6 - Arrays
 Array adalah kumpulan data yang disimpan dalam satu variabel. Array dapat menyimpan satu atau lebih nilai. Array dapat menyimpan berbagai jenis data, termasuk teks, angka, dan boolean. Array diawali dengan tanda $ diikuti dengan nama variabel, dan menggunakan keyword "[]".
 
 Contoh variable array 
@@ -87,7 +87,7 @@ salah satu cara memunculkan variable array adalah dengan menggunakan loop, conto
     </ul>
 ```
 
-## Episode 7
+## Episode 7 - Associative arrays
 Associative array adalah array yang memiliki key dan value. Key adalah nama yang diberikan untuk data pada array. Key dapat berupa angka atau string. 
 Contoh Associative array :
 ```
@@ -118,3 +118,29 @@ Memunculkan output Associative array berdasarkan 'name' dan 'purchaseUrl' :
         <?php endforeach; ?>
     </ul>
  ```
+ ## Episode 8 - Functions and filtering
+ Function adalah sebuah blok kode yang dapat digunakan berulang kali untuk melakukan suatu tugas tertentu. Function dapat menerima parameter dan mengembalikan nilai.
+ contoh function dan penggunaan :
+ ```
+ function filterByAuthor($books){
+    $filtered = [];
+    foreach ($books as $book) {
+        if ($book['author'] === 'Andy Weir') {
+            $filtered[] = $book;
+        }
+    }
+    return $filtered;
+}
+//pemanggilan function
+<ul>
+  <?php foreach (filterByAuthor($books) as $book) :?>
+    <li>
+      <a href="<?= $book['purchase_url'] ?>">
+        <?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?>
+      </a>
+    </li>
+  <?php endforeach; ?>
+</ul>
+```
+output :
+![filter2](https://user-images.githubusercontent.com/95467302/223937184-baa5f503-8693-43c5-b061-e56f1087e283.png)
