@@ -119,28 +119,264 @@ Memunculkan output Associative array berdasarkan 'name' dan 'purchaseUrl' :
     </ul>
  ```
  ## Episode 8 - Functions and filtering
- Function adalah sebuah blok kode yang dapat digunakan berulang kali untuk melakukan suatu tugas tertentu. Function dapat menerima parameter dan mengembalikan nilai.
- contoh function dan penggunaan :
+ Melakukan Filtering pada buku yang memiliki author 'Andy Weir' :
  ```
- function filterByAuthor($books){
-    $filtered = [];
-    foreach ($books as $book) {
-        if ($book['author'] === 'Andy Weir') {
-            $filtered[] = $book;
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+    <?php 
+    $books = [
+        [ 
+            'name' => 'Do Androids Dream of Electric Sheep',
+            'author' => 'Philip K. Dick',
+            'releaseYear' => 1968,
+            'purchaseUrl' => 'http://example.com'
+        ],
+        [ 
+            'name' => 'Project Hail Mary',
+            'author' => 'Andy Weir',
+            'releaseYear' => 2021,
+            'purchaseUrl' => 'http://example.com'
+        ],
+        [ 
+            'name' => 'The Martin',
+            'author' => 'Andy Weir',
+            'releaseYear' => 2011,
+            'purchaseUrl' => 'http://example.com'
+        ]
+    ];
+
+    ?>
+
+    <ul>
+        <?php foreach ($books as $book) : ?>
+            <?php if ($book['author'] = 'Andy Weir') : ?>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?= $book['name']; ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?>
+                </a>
+            </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</body>
+</html>
+```
+Output :
+![image](https://user-images.githubusercontent.com/95467302/228076976-c6608cc8-5e1a-47f2-adb0-8805cf303b58.png)
+
+Filtering masih belum benar dikarenakan pada code ``` <?php if ($book['author'] = 'Andy Weir') : ?> ``` hanya menggunakan '=' 1x yang memiliki arti yaitu menginputkan atau memasukkan nilai 'Andy Weir' pada variable 'author'. Maka harus menggunakan '=' sebanyak 3x agar dapat melakukan filtering dengan baik, pembetulan coding :
+```
+<?php foreach ($books as $book) : ?>
+            <?php if ($book['author'] === 'Andy Weir') : ?>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?= $book['name']; ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?>
+                </a>
+            </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+ ```
+ output :
+ ![image](https://user-images.githubusercontent.com/95467302/228077418-5f2a5ba5-8f54-44b2-8c51-260fa5bbcd8f.png)
+
+Menambahkan function filterByAuthor yang memiliki fungsi yang sama yaitu untuk memfilter variable 'Author' yang memiliki nilai 'Andy Weir'
+code :
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+    <?php 
+    $books = [
+        [ 
+            'name' => 'Do Androids Dream of Electric Sheep',
+            'author' => 'Philip K. Dick',
+            'releaseYear' => 1968,
+            'purchaseUrl' => 'http://example.com'
+        ],
+        [ 
+            'name' => 'Project Hail Mary',
+            'author' => 'Andy Weir',
+            'releaseYear' => 2021,
+            'purchaseUrl' => 'http://example.com'
+        ],
+        [ 
+            'name' => 'The Martin',
+            'author' => 'Andy Weir',
+            'releaseYear' => 2011,
+            'purchaseUrl' => 'http://example.com'
+        ]
+    ];
+
+    function filterByAuthor($books){
+        $filteredBook = [];
+        foreach($books as $book){
+            if ($book['author'] === 'Andy Weir'){
+                $filteredBook[] = $book;
+            }
         }
+        return $filteredBook;
     }
-    return $filtered;
-}
-//pemanggilan function
-<ul>
-  <?php foreach (filterByAuthor($books) as $book) :?>
-    <li>
-      <a href="<?= $book['purchase_url'] ?>">
-        <?= $book['name'] ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?>
-      </a>
-    </li>
-  <?php endforeach; ?>
-</ul>
+    ?>
+
+    <ul>
+        <?php foreach (filterByAuthor($books) as $book) : ?>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?= $book['name']; ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</body>
+</html>
 ```
 output :
-![filter2](https://user-images.githubusercontent.com/95467302/223937184-baa5f503-8693-43c5-b061-e56f1087e283.png)
+![image](https://user-images.githubusercontent.com/95467302/228079700-e8132981-c787-4079-8654-0dfbed959c9c.png)
+
+Untuk mempermudah melakukan pemfilteran, diberikan parameter $author pada function filterByAuthor agar dapat merubah filter dengan mudah
+Perubahan code :
+```
+    function filterByAuthor($books, $author){
+        $filteredBook = [];
+        foreach($books as $book){
+            if ($book['author'] === $author){
+                $filteredBook[] = $book;
+            }
+        }
+        return $filteredBook;
+    }
+    ?>
+
+    <ul>
+        <?php foreach (filterByAuthor($books, 'Philip K. Dick') as $book) : ?>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?= $book['name']; ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+ ```
+ Output :
+ ![image](https://user-images.githubusercontent.com/95467302/228080453-67cf24b4-0d0d-467f-b967-fa4b190025bb.png)
+
+## Episode 9 - Lambda Function
+Merubah function sebelumnya menjadi function yang lebih flexible, hanya dengan menambahkan parameter $key dan $value.
+code :
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+    <?php 
+    $books = [
+        [ 
+            'name' => 'Do Androids Dream of Electric Sheep',
+            'author' => 'Philip K. Dick',
+            'releaseYear' => 1968,
+            'purchaseUrl' => 'http://example.com'
+        ],
+        [ 
+            'name' => 'Project Hail Mary',
+            'author' => 'Andy Weir',
+            'releaseYear' => 2021,
+            'purchaseUrl' => 'http://example.com'
+        ],
+        [ 
+            'name' => 'The Martin',
+            'author' => 'Andy Weir',
+            'releaseYear' => 2011,
+            'purchaseUrl' => 'http://example.com'
+        ]
+    ];
+
+    function filter($items, $key, $value){
+    $filteredItems = [];
+        foreach($items as $item){
+            if ($item[$key] === $value){
+                $filteredItems[] = $item;
+            }
+        }
+        return $filteredItems;
+    }
+    $filteredBooks = filter($books, 'releaseYear', 2021);
+    ?>
+
+    <ul>
+        <?php foreach ($filteredBooks as $book) : ?>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?= $book['name']; ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</body>
+</html>
+```
+output :
+![image](https://user-images.githubusercontent.com/95467302/228083885-9f257412-cc7a-4e76-97ac-87075051e18e.png)
+
+Tahap selanjutnya adalah menambahkan lambda function atau anonnymous function, yang berfungsi untuk membuat function menjadi lebih flexible. lalu menghapus function yang ada sebelumnya dan menggunakan fitur yang ada di php yaitu 'array_filter' untuk mempermudah penjalanan function
+Perubahan code :
+ ```
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<body>
+    <?php 
+    $books = [
+        [ 
+            'name' => 'Do Androids Dream of Electric Sheep',
+            'author' => 'Philip K. Dick',
+            'releaseYear' => 1968,
+            'purchaseUrl' => 'http://example.com'
+        ],
+        [ 
+            'name' => 'Project Hail Mary',
+            'author' => 'Andy Weir',
+            'releaseYear' => 2021,
+            'purchaseUrl' => 'http://example.com'
+        ],
+        [ 
+            'name' => 'The Martin',
+            'author' => 'Andy Weir',
+            'releaseYear' => 2011,
+            'purchaseUrl' => 'http://example.com'
+        ]
+    ];
+
+    $filteredBooks = array_filter($books, function ($book) {
+        return $book['releaseYear'] < 2000;
+    });
+    ?>
+
+    <ul>
+        <?php foreach ($filteredBooks as $book) : ?>
+            <li>
+                <a href="<?= $book['purchaseUrl'] ?>">
+                    <?= $book['name']; ?> (<?= $book['releaseYear'] ?>) - By <?= $book['author'] ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</body>
+</html>
+```
+Output :
+![image](https://user-images.githubusercontent.com/95467302/228085839-ffcdbdec-640c-4f14-8925-685305ce349b.png)
