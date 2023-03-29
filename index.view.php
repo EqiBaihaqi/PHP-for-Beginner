@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1><?php $business['name'] ?>/h1>
+    <h1><?= $business['name']; ?></h1>
 
     <ul>
         
