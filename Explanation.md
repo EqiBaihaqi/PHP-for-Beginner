@@ -380,3 +380,53 @@ Perubahan code :
 ```
 Output :
 ![image](https://user-images.githubusercontent.com/95467302/228085839-ffcdbdec-640c-4f14-8925-685305ce349b.png)
+
+## Episode 10 - Separate PHP Logic From the Template
+Kita bisa memisahkan file khusus php dengan file yang digunakan untuk menampilkan(view) interface. dengan syarat memberi 'require -nama file view-' pada index.php
+
+## Episdoe 11
+
+Mencoba kembali materi Array sebelumnya
+
+file index.php 
+```
+<?php 
+    $business = [
+        'name' => 'Laracast',
+        'cost' => 15,
+        'categories' => ["Testing", "PHP", "JavaScript"]
+    ];
+    
+    require "index.view.php";
+```
+
+file index.view.php
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><?= $business['name']; ?></h1>
+
+    <ul>
+        
+            <?php foreach($business['categories'] as $category) : ?>
+                <li>
+                <?= $category; ?>
+                </li>
+                <?php endforeach; ?>
+    </ul>
+</body>
+</html>
+```
+Output :
+![image](https://user-images.githubusercontent.com/95467302/228497750-18923701-f5c2-4b85-bb94-e4fb6670e0f7.png)
+
+
+#Test Laracast
+![image](https://user-images.githubusercontent.com/95467302/228493810-306e208e-e7c2-46a9-98bd-a81fcec638f1.png)
