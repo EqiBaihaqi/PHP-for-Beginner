@@ -22,9 +22,9 @@
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="/" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Menu</a>
 
-            <a href="/about.php" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">About Us</a>
+            <a href="/about" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">About Us</a>
 
-            <a href="/contact.php" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Contact Us</a>
+            <a href="contact" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Contact Us</a>
             </div>
           </div>
         </div>
@@ -127,12 +127,12 @@
 
   <header class="bg-white shadow">
     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">About Us</h1>
     </div>
   </header>
   <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-      Hello welcome to Dashboard
+      About Us
     </div>
   </main>
 </div>
