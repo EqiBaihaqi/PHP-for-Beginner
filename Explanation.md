@@ -433,3 +433,5 @@ Output :
 
 ## Episdoe 12 - Page Links
 Page Links befungsi untuk pindah dari page 1 ke page lain.
+
+Pada episode ini mmengambil template dari website tailwindui
