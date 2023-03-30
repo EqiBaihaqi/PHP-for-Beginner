@@ -430,3 +430,6 @@ Output :
 
 #Test Laracast
 ![image](https://user-images.githubusercontent.com/95467302/228493810-306e208e-e7c2-46a9-98bd-a81fcec638f1.png)
+
+## Episdoe 12 - Page Links
+Page Links befungsi untuk pindah dari page 1 ke page lain.
